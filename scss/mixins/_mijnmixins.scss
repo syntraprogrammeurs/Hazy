@@ -1,0 +1,52 @@
+@mixin center($horizontal: true, $vertical: true) {
+  position: absolute;
+
+  @if ($horizontal and $vertical) {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  } @else if ($horizontal) {
+    left: 50%;
+    transform: translate(-50%, 0);
+
+  } @else if ($vertical) {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+.parent {
+  position: relative;
+  background: #f06d06;
+  width: 50%;
+  height: 200px;
+  margin: 20px auto;
+}
+
+.child {
+  background: white;
+  padding: 20px;
+
+  &.both {
+    @include center;
+  }
+
+  &.horizontal {
+    @include center(true, false);
+  }
+
+  &.vertical {
+    @include center(false, true);
+  }
+}
+
+body {
+  background: papayawhip;
+}
+
+
+/**buttons*/
+.btn-custom{
+  @include button-variant(red, orange, blue);
+}
